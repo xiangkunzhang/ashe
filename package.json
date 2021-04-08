@@ -1,0 +1,42 @@
+{
+  "name": "ashe",
+  "version": "0.0.0",
+  "bin": "production.js",
+  "scripts": {
+    "dev": "node dev_server.js",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --ssrManifest --outDir application/dist/client",
+    "build:server": "vite build --ssr src/entry-server.js --outDir application/dist/server",
+    "start:build": "npm run build && node production.js",
+    "start": "node production.js",
+    "pkg": "pkg ."
+  },
+  "dependencies": {
+    "vue": "^3.0.5",
+    "vuex": "^4.0.0",
+    "vue-router": "^4.0.6",
+    "element-plus": "^1.0.2-beta.37",
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.1",
+    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/server-renderer": "^3.0.11",
+    "vite-plugin-compression": "^0.2.4",
+    "compression": "^1.7.4",
+    "serve-static": "^1.14.1",
+    "sass": "^1.32.8",
+    "@iarna/toml": "^2.2.5",
+    "vite": "^2.1.5",
+    "express": "^4.17.1"
+  },
+  "pkg": {
+    "outputPath": "pkg",
+    "assets": [
+      "application/dist/client/**/*"
+    ],
+    "targets": [
+      "node14-win-x64"
+    ]
+  }
+}

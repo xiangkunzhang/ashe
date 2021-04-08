@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+alias.config.js
+.idea
+application/dist
+pkg
+package-lock.json
