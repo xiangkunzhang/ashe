@@ -8,7 +8,7 @@ export function createRouter() {
     let routes = makeDynamicRoutes()
     routes.push(...makeConstRouters())
     return _createRouter({
-        history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
+        history: import.meta.env.SSR ? createMemoryHistory('/ashe/') : createWebHistory('/ashe/'),
         routes
     })
 }

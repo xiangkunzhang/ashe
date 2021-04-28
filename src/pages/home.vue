@@ -4,7 +4,10 @@
 
 <script>
     export default {
-        name: "home"
+        name: "home",
+        mounted() {
+            // document.title = '首页'
+        }
     }
 </script>
 
