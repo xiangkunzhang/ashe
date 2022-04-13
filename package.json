@@ -12,23 +12,23 @@
     "pkg": "pkg ."
   },
   "dependencies": {
-    "vue": "^3.0.5",
-    "vuex": "^4.0.0",
-    "vue-router": "^4.0.6",
-    "element-plus": "^1.0.2-beta.37",
-    "axios": "^0.21.1"
+    "vue": "^3.2.32",
+    "vuex": "^4.0.2",
+    "vue-router": "^4.0.14",
+    "element-plus": "^2.1.9",
+    "axios": "^0.26.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.2.1",
-    "@vue/compiler-sfc": "^3.0.5",
-    "@vue/server-renderer": "^3.0.11",
-    "vite-plugin-compression": "^0.2.4",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/compiler-sfc": "^3.2.32",
+    "@vue/server-renderer": "^3.2.32",
+    "vite-plugin-compression": "^0.5.1",
     "compression": "^1.7.4",
-    "serve-static": "^1.14.1",
-    "sass": "^1.32.8",
+    "serve-static": "^1.15.0",
+    "sass": "^1.50.0",
     "@iarna/toml": "^2.2.5",
-    "vite": "^2.1.5",
-    "express": "^4.17.1"
+    "vite": "^2.9.2",
+    "express": "^4.17.3"
   },
   "pkg": {
     "outputPath": "pkg",

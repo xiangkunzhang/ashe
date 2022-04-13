@@ -36,7 +36,7 @@ function makeConstRouters() {
     return [
         {path: '/404', name: 'Error404', component: () => import('@/pages/error/404.vue')},
         {
-            path: '/:pathMatch(.*)*', redirect: '/404', name: "NotFound"
+            path: '/:pathMatch(.*)*', redirect: {name: 'Error404'}, name: "NotFound"
         }
     ]
 }
