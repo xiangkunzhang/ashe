@@ -1,0 +1,4 @@
+/*! @import 引入 Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
