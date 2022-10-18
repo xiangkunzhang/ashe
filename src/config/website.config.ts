@@ -1,8 +1,8 @@
 import logoImage from '@/assets/images/logo.svg'
 
 export const websiteConfig = Object.freeze({
-  title: 'NaiveUiAdmin',
+  title: 'NaiveUi Template',
   logo: logoImage,
   loginImage: logoImage,
-  loginDesc: 'Naive Ui Admin 前端/设计解决方案'
+  loginDesc: 'NaiveUi Template'
 })

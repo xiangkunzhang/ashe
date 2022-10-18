@@ -1,15 +1,17 @@
 import { createApp } from 'vue'
 import { ekkoRouter } from '@/router'
 import { appStore } from '@/store'
-import App from '@/App.vue'
+import I18n from '@/i18n'
+import AppPage from '@/App.vue'
 
 export const initApp = () => {
-  const app = createApp(App)
+  const app = createApp(AppPage)
   const meta = document.createElement('meta')
   meta.name = 'naive-ui-style'
   document.head.appendChild(meta)
   app.use(ekkoRouter)
   app.use(appStore)
+  app.use(I18n)
   return app
 }
 

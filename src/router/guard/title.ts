@@ -1,5 +1,6 @@
 import { useTitle } from '@vueuse/core'
 import type { Router } from 'vue-router'
+import { useAppSettingStore } from '@/store/modules/AppSetting'
 
 export default class TitleGuard {
   router: Router
@@ -13,6 +14,8 @@ export default class TitleGuard {
     this.router.beforeEach(async (_to, _from, next) => {
       // 开始 loadingBar
       window.$loadingBar?.start()
+      const settingStore = useAppSettingStore()
+      await settingStore.setLocale(settingStore.getLocale)
       // 页面跳转权限处理
       next()
     })

@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :locale="zhCN" :date-locale="dateZhCN" preflight-style-disabled>
+  <n-config-provider :locale="localeMessage.NaiveUILocale" :date-locale="localeMessage.NaiveDateLocale" preflight-style-disabled>
     <n-loading-bar-provider>
       <n-dialog-provider>
         <n-notification-provider>
@@ -14,10 +14,13 @@
 </template>
 
 <script setup lang="ts">
-  import { defineComponent, h } from 'vue'
+  import { computed, defineComponent, h } from 'vue'
+  import { useAppSettingStore } from '@/store/modules/AppSetting'
+  import { useLoadingBar, useDialog, useMessage, useNotification } from 'naive-ui'
 
-  import { zhCN, dateZhCN, useLoadingBar, useDialog, useMessage, useNotification } from 'naive-ui'
+  const settingStore = useAppSettingStore()
 
+  const localeMessage = computed(() => settingStore.getLocaleMessage)
   // 挂载naive组件的方法至window, 以便在路由钩子函数和请求函数里面调用
   function registerNaiveTools() {
     window.$loadingBar = useLoadingBar()
@@ -34,8 +37,4 @@
       return h('div')
     }
   })
-</script>
-
-<script lang="ts">
-  export default { name: 'NaiveProvider' }
 </script>
