@@ -5,17 +5,27 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import compressPlugin from 'vite-plugin-compression'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import { viteMockServe } from 'vite-plugin-mock'
 
-/* 创建Vite插件集 */
+/** 创建Vite插件集 */
 export const makePlugin = (env: ViteEnv) => {
-  const vitePlugins: (Plugin | PluginOption)[] = [vue(), vueJsx(), Components({ dts: true, resolvers: [NaiveUiResolver()] }), configHtmlPlugin(env)]
+  const vitePlugins: (Plugin | PluginOption)[] = [
+    vue(),
+    vueJsx(),
+    Components({
+      dts: true,
+      resolvers: [NaiveUiResolver()]
+    }),
+    configHtmlPlugin(env),
+    configMockPlugin(env)
+  ]
   if (!env.isDev) {
     vitePlugins.push(configCompressPlugin('gzip'))
   }
   return vitePlugins
 }
 
-/* 配置 文件压缩插件 */
+/** 配置 文件压缩插件 */
 function configCompressPlugin(compress: 'gzip' | 'brotli' | 'none'): Plugin | Plugin[] {
   const compressList = compress.split(',')
   const plugins: Plugin[] = []
@@ -28,7 +38,7 @@ function configCompressPlugin(compress: 'gzip' | 'brotli' | 'none'): Plugin | Pl
   return plugins
 }
 
-/* 配置Html加载插件 */
+/** 配置Html加载插件 */
 function configHtmlPlugin(env: ViteEnv): PluginOption[] {
   const { VITE_APP_TITLE } = env
   /* HTML 未加载JS前 loading*/
@@ -61,5 +71,21 @@ function configHtmlPlugin(env: ViteEnv): PluginOption[] {
         loadingHtml: loadingHtml
       }
     }
+  })
+}
+
+/** 配置Mock插件*/
+function configMockPlugin(env: ViteEnv): Plugin {
+  return viteMockServe({
+    mockPath: 'mock',
+    ignore: /^_/,
+    localEnabled: env.VITE_MOCK && env.isDev,
+    prodEnabled: env.VITE_MOCK,
+    injectCode: env.VITE_MOCK
+      ? `
+      import { setupProdMockServer } from '../mock/_createProductionServer';
+      setupProdMockServer();
+      `
+      : ''
   })
 }

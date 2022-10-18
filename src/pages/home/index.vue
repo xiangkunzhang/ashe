@@ -8,11 +8,13 @@
 
 <script setup lang="ts">
   import { useAppSettingStore } from '@/store/modules/AppSetting'
+  import { fetchAuthLogin } from '@/api/auth'
 
   const settingStore = useAppSettingStore()
   const changeLocale = locale => {
     settingStore.setLocale(locale)
   }
+  fetchAuthLogin()
 </script>
 
 <style lang="scss" scoped></style>

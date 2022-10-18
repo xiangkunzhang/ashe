@@ -16,16 +16,18 @@ interface ImportMeta {
 
 interface ViteEnv {
   isDev: boolean
-  /*项目名称*/
+  /**项目名称*/
   VITE_APP_TITLE: string
-  /*开发模式下 项目端口号*/
+  /**开发模式下 项目端口号*/
   VITE_DEV_PORT: number
-  /*网站前缀*/
+  /**网站前缀*/
   VITE_BASE_URL: string
-  /*API 接口地址*/
+  /**API 接口地址*/
   VITE_API_URL: string
-  /*图片上传地址*/
+  /**图片上传地址*/
   VITE_UPLOAD_URL: string
-  /*图片前缀地址*/
+  /**图片前缀地址*/
   VITE_IMG_URL: string
+  /**开启MOCK*/
+  VITE_MOCK: boolean
 }

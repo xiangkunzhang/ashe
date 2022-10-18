@@ -44,7 +44,9 @@ const makeDefaultEnv = (origin: ViteEnv): ViteEnv => {
     /*图片上传地址*/
     VITE_UPLOAD_URL: origin.VITE_UPLOAD_URL || '',
     /*图片前缀地址*/
-    VITE_IMG_URL: origin.VITE_IMG_URL || ''
+    VITE_IMG_URL: origin.VITE_IMG_URL || '',
+    /**开启MOCK*/
+    VITE_MOCK: origin.VITE_MOCK || false
   }
 }
 
