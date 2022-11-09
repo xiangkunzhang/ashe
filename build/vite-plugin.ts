@@ -83,8 +83,8 @@ function configMockPlugin(env: ViteEnv): Plugin {
     prodEnabled: env.VITE_MOCK,
     injectCode: env.VITE_MOCK
       ? `
-      import { setupProdMockServer } from '../mock/_createProductionServer';
-      setupProdMockServer();
+      import { setupProdMockServer } from '../mock/_configProductionServer'
+      setupProdMockServer()
       `
       : ''
   })
