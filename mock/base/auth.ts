@@ -5,6 +5,7 @@ export default [
     url: '/auth/login',
     time: 100,
     method: 'get',
+    timeout: 1,
     response(query) {
       console.log('/auth/login query', query)
       return {

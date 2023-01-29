@@ -9,7 +9,7 @@ export class BaseAxios implements Axios {
   constructor(config?: AxiosRequestConfig) {
     this.instance = axios.create({
       baseURL: import.meta.env.VITE_API_URL,
-      timeout: 10 * 60 * 1000, // 请求超时时间,5000(单位毫秒) / 0 不做限制
+      timeout: 10 * 50 * 1000, // 请求超时时间,5000(单位毫秒) / 0 不做限制
       ...(config || {})
     })
     this.defaults = this.instance.defaults
