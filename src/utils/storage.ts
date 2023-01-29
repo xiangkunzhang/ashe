@@ -1,5 +1,7 @@
+import { EkkoEncrypt } from '@/utils/encrypt'
+
 export class Storage {
-  readonly baseAppName = 'PokiMall'
+  readonly baseAppName = 'Ashe'
 
   storageName = ''
 
@@ -8,51 +10,18 @@ export class Storage {
   }
 
   setLocal(data: any) {
-    localStorage.setItem(this.storageName, this.makeData(data))
+    localStorage.setItem(this.storageName, this.encodeData(data))
   }
 
-  setLocalBtoa(data: any) {
-    const dataStr = JSON.stringify(data)
-    localStorage.setItem(this.storageName, btoa(dataStr))
-  }
-
-  getLocal(notObject?: boolean): object | string | any {
-    if (notObject) {
-      return localStorage.getItem(this.storageName) || ''
-    }
-    return JSON.parse(localStorage.getItem(this.storageName) || '{}')
-  }
-
-  getLocalAtob(): object {
-    const localStr = localStorage.getItem(this.storageName)
-    if (localStr) {
-      return JSON.parse(atob(localStr))
-    }
-    return {}
+  getLocal<T>(): T | unknown {
+    return this.decodeData<T>(localStorage.getItem(this.storageName) || '') as T
   }
 
   setSession(data: any) {
-    sessionStorage.setItem(this.storageName, this.makeData(data))
+    sessionStorage.setItem(this.storageName, this.encodeData(data))
   }
-
-  setSessionBtoa(data: any) {
-    const dataStr = JSON.stringify(data)
-    sessionStorage.setItem(this.storageName, btoa(dataStr))
-  }
-
-  getSession(notObject?: boolean): object | string | any {
-    if (notObject) {
-      return sessionStorage.getItem(this.storageName) || ''
-    }
-    return JSON.parse(sessionStorage.getItem(this.storageName) || '{}')
-  }
-
-  getSessionAtob(): object {
-    const localStr = sessionStorage.getItem(this.storageName)
-    if (localStr) {
-      return JSON.parse(atob(localStr))
-    }
-    return {}
+  getSession<T>(): T | unknown {
+    return this.decodeData<T>(sessionStorage.getItem(this.storageName) || '') as T
   }
 
   clear() {
@@ -65,15 +34,36 @@ export class Storage {
     sessionStorage.clear()
   }
 
-  makeName(name: string): string {
+  private makeName(name: string): string {
     return `${this.baseAppName}_${name}`
   }
 
-  makeData(data: any): string {
-    if (typeof data === 'string') {
-      return data
-    } else {
-      return JSON.stringify(data)
+  private encodeData(data: any): string {
+    if (!data) {
+      return ''
     }
+    switch (data.constructor) {
+      case Array:
+      case Object:
+        return EkkoEncrypt.aesEncrypt(encodeURIComponent(JSON.stringify(data)))
+      case String:
+      case Number:
+        return EkkoEncrypt.aesEncrypt(encodeURIComponent(String(data)))
+      default:
+        return ''
+    }
+  }
+
+  private decodeData<T>(val: string): T | unknown {
+    let res = ''
+    if (val) {
+      const decodeStr = EkkoEncrypt.aesDecrypt(decodeURIComponent(val))
+      try {
+        res = JSON.parse(decodeStr)
+      } catch (e) {
+        res = decodeStr
+      }
+    }
+    return res
   }
 }

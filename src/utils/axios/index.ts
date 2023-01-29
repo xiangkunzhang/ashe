@@ -19,11 +19,12 @@ class AxiosRequest extends BaseAxios {
       // todo
       // config.headers['Authorization'] = `Bearer ${jwt}`
       if (this.printConsole) {
-        console.groupCollapsed(`【接口】`, config.url)
+        console.groupCollapsed(`【接口】%c %s`, 'background: #222; color: #bada55', config.url)
         console.log(`【headers】`, config.headers)
-        console.log(`【baseURL】`, config.baseURL)
+        console.log(`【baseURL】%c %s`, 'background: #222; color: #bada55', config.baseURL)
         console.log(`【方法】${config.method?.toUpperCase()}`)
-        console.log(`【传参】`, config.method === 'post' ? config.data : config.params)
+        console.log(`【传参】Data`, config.data)
+        console.log(`【传参】Params`, config.params)
         console.groupEnd()
       }
       return config
