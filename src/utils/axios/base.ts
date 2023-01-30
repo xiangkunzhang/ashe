@@ -24,7 +24,7 @@ export class BaseAxios implements Axios {
     return this.instance.request(config)
   }
 
-  get<T = any, R = AxiosResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R> {
+  get<T = any, R = ResponseData<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<R> {
     return this.instance.get(url, config)
   }
 
@@ -40,7 +40,7 @@ export class BaseAxios implements Axios {
     return this.instance.options(url, config)
   }
 
-  post<T = any, R = AxiosResponse<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R> {
+  post<T = any, R = ResponseData<T>, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R> {
     return this.instance.post(url, data, config)
   }
 

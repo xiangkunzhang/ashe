@@ -1,5 +1,6 @@
 import { BaseAxios } from './base'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { ErrorCode } from '@/utils/axios/errorCode'
 
 export class AxiosRequest extends BaseAxios {
   private printConsole = true
@@ -36,7 +37,7 @@ export class AxiosRequest extends BaseAxios {
 
   makeResponseInterceptor() {
     this.instance.interceptors.response.use(
-      async (response: AxiosResponse): Promise<any> => {
+      async (response: AxiosResponse<ResponseData>): Promise<any> => {
         const { data, config, status, statusText } = response
         if (this.printConsole) {
           console.groupCollapsed(`【接口返回】%c %s`, 'background: #4c3c3c; color: #cc8f5c', config.url)
@@ -46,6 +47,13 @@ export class AxiosRequest extends BaseAxios {
           console.log(`【Status】Text`, statusText)
           console.log(`【结果】`, data)
           console.groupEnd()
+        }
+        if (data.code) {
+          if (!this.noErrorMsg) {
+            const errMsg = ErrorCode[data.code]
+            window.$message?.error(errMsg || data.msg || `API错误：${data.code}`)
+          }
+          return Promise.reject(new Error('API结果异常'))
         }
         // todo 结果处理
         return data
