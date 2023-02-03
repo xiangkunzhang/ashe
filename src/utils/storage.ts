@@ -13,7 +13,7 @@ export class Storage {
     localStorage.setItem(this.storageName, this.encodeData(data))
   }
 
-  getLocal<T>(): T | unknown {
+  getLocal<T>(): T | any {
     return this.decodeData<T>(localStorage.getItem(this.storageName) || '') as T
   }
 
@@ -66,4 +66,8 @@ export class Storage {
     }
     return res
   }
+}
+
+export const useWebStorage = (name: string) => {
+  return new Storage(name)
 }

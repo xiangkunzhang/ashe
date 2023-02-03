@@ -1,6 +1,7 @@
 import { useTitle } from '@vueuse/core'
 import type { Router } from 'vue-router'
 import { useAppSettingStore } from '@/store/modules/AppSetting'
+import { useAuthStoreOut } from '@/store/modules/Auth'
 
 export default class TitleGuard {
   router: Router
@@ -22,6 +23,8 @@ export default class TitleGuard {
 
     this.router.afterEach(to => {
       console.log('router.afterEach')
+      const c = useAuthStoreOut()
+      console.log('c.getToken', c, c.getToken)
       // 设置document title
       useTitle(to.meta.title)
       // 结束 loadingBar

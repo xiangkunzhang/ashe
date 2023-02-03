@@ -6,7 +6,7 @@ export default [
     url: '/auth/login',
     time: 100,
     method: 'get',
-    timeout: 1,
+    timeout: 100,
     response({ query }) {
       console.log('/auth/login query', query)
       if (!query.username || !query.password) {
