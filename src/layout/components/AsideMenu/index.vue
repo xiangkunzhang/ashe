@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <div>
+    <router-link to="/">首页</router-link>
+    <router-link :to="{ name: 'ABOUT' }">关于</router-link>
+  </div>
 </template>
 
 <script setup lang="ts"></script>

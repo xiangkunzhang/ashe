@@ -9,9 +9,7 @@ export const initApp = () => {
   const meta = document.createElement('meta')
   meta.name = 'naive-ui-style'
   document.head.appendChild(meta)
-  app.use(ekkoRouter)
-  app.use(appStore)
-  app.use(I18n)
+  app.use(ekkoRouter).use(appStore).use(I18n)
   return app
 }
 

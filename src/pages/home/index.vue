@@ -13,6 +13,8 @@
   const changeLocale = locale => {
     settingStore.setLocale(locale)
   }
+  console.log(new Date().getTime())
+  console.log('123')
 </script>
 
 <style lang="scss" scoped></style>

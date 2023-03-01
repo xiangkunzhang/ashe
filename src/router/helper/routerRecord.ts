@@ -59,8 +59,18 @@ export const staticRouters: RouteRecordRaw[] = [
     children: [
       {
         name: 'Index',
-        path: '',
+        path: '/',
         component: () => import('@/pages/home/index.vue'),
+        meta: {
+          title: 'Index',
+          hidden: true,
+          withoutLogin: true
+        }
+      },
+      {
+        name: 'ABOUT',
+        path: 'about',
+        component: () => import('@/pages/about/index.vue'),
         meta: {
           title: 'Index',
           hidden: true,

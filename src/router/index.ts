@@ -23,7 +23,7 @@ class EkkoRouter {
   }
 
   install(app: App<Element>) {
-    app.use(ekkoRouter.router)
+    app.use(this.router)
   }
 }
 

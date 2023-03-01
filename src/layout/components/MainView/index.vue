@@ -5,7 +5,9 @@
         <!--          <keep-alive v-if="keepAliveComponents" :include="keepAliveComponents">
             <component :is="Component" :key="route.fullPath" />
           </keep-alive>-->
-        <component :is="Component" :key="route.fullPath" />
+        <div :key="route.fullPath">
+          <component :is="Component" />
+        </div>
       </transition>
     </template>
   </router-view>

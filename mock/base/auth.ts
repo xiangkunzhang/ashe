@@ -33,5 +33,12 @@ export default [
   },
   {
     url: '/auth/register'
+  },
+  {
+    url: '/auth/routers',
+    method: 'get',
+    response() {
+      return {}
+    }
   }
 ] as MockMethod[]
