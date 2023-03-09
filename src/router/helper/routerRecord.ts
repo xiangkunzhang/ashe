@@ -64,7 +64,7 @@ export const staticRouters: RouteRecordRaw[] = [
         meta: {
           title: 'Index',
           hidden: true,
-          withoutLogin: true
+          withoutLogin: false
         }
       },
       {

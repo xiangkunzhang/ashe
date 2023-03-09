@@ -7,9 +7,10 @@ export const initAuthUser = (): AuthUser => {
   }
 }
 
-export const initAuthLoginData = (): AuthLoginData => {
+export const initAuthLoginData = (): ResponseData<string> => {
   return {
-    user: initAuthUser(),
-    token: ''
+    code: 200,
+    msg: '',
+    data: ''
   }
 }

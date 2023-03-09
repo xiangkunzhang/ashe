@@ -8,11 +8,14 @@
 
 <script setup lang="ts">
   import { useAppSettingStore } from '@/store/modules/AppSetting'
+  import { useFetchAuthInfo } from '@/api/auth/auth'
 
   const settingStore = useAppSettingStore()
+  const authApi = useFetchAuthInfo()
   const changeLocale = locale => {
     settingStore.setLocale(locale)
   }
+  authApi.doFetch()
   console.log(new Date().getTime())
   console.log('123')
 </script>

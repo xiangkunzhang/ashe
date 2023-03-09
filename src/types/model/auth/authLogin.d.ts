@@ -3,7 +3,5 @@ declare interface AuthLoginParam {
   password: string
 }
 
-declare interface AuthLoginData {
-  user: AuthUser
-  token: string
-}
+declare const AuthLoginData: string
+type AuthLoginResp = ResponseData

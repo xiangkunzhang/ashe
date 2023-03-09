@@ -121,7 +121,7 @@
         message.success('成功退出登录')
         router
           .replace({
-            name: 'Login',
+            name: 'AuthLogin',
             query: {
               redirect: route.fullPath
             }

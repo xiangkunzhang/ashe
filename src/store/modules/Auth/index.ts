@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import { store } from '@/store'
 import { useWebStorage } from '@/utils/storage'
+import { ekkoRouter } from '@/router'
 
 const storageAuth = useWebStorage('AuthToken')
-const storageAuthUser = useWebStorage('AuthUser')
+// const storageAuthUser = useWebStorage('AuthUser')
 export const useAuthStore = defineStore({
   id: 'Auth',
   state: (): StoreAuth => ({
@@ -31,10 +32,13 @@ export const useAuthStore = defineStore({
       this.token = value
       storageAuth.setLocal(value)
     },
-    setLoginUser(loginData: AuthLoginData) {
-      this.setToken(loginData.token)
-      this.user = Object.assign(this.user, loginData.user)
-      storageAuthUser.setLocal(this.user)
+    setLoginUser(token: string) {
+      this.setToken(token)
+    },
+    setLoginOut(): void {
+      this.token = ''
+      storageAuth.clear()
+      ekkoRouter.router.replace({ name: 'AuthLogin' })
     }
   }
 })

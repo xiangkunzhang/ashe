@@ -28,6 +28,7 @@
   import type { FormInst, FormRules } from 'naive-ui'
   import { useFetchLogin } from '@/api/auth/auth'
   import { useAuthStore } from '@/store/modules/Auth'
+  import { useRouter } from 'vue-router'
 
   const loginFormRef = ref<FormInst | null>()
   const loginFormData = reactive({
@@ -40,6 +41,7 @@
   }
   const { result, loading, isError, doFetch } = useFetchLogin()
   const authStore = useAuthStore()
+  const router = useRouter()
 
   const handleLoginClick = async () => {
     try {
@@ -47,6 +49,7 @@
       await doFetch(loginFormData)
       if (!isError.value) {
         authStore.setLoginUser(result.value)
+        router.replace({ name: 'Index' })
       }
     } catch (e) {
       console.error(e)
